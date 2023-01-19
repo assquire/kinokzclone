@@ -14,7 +14,10 @@ struct Constants {
     }
     
     struct Identifiers {
-        
+        static let sectionCollectionViewCell = "SectionCollectionViewCell"
+        static let trendingCollectionViewCell = "TrendingCollectionViewCell"
+        static let movieTableViewCell = "MovieTableViewCell"
+        static let movieCollectionViewCell = "MovieCollectionViewCell"
     }
     
     struct Colors {
@@ -22,7 +25,14 @@ struct Constants {
     }
     
     struct Values {
-        
+        static let tabBarItems = ["Poster", "Theaters", "My Tickets", "Profile"]
     }
-    
+}
+
+enum MediaType: String, CaseIterable {
+    case trending = "Trending"
+    case all = "All"
+    case streaming = "Streaming"
+    case onTV = "On TV"
+    case inTheaters = "In Theaters"
 }

@@ -17,6 +17,11 @@
 		379F9AFD29766C5900746C12 /* TicketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F9AFC29766C5900746C12 /* TicketsViewController.swift */; };
 		379F9AFF29766C6300746C12 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F9AFE29766C6300746C12 /* ProfileViewController.swift */; };
 		379F9B0229766FB700746C12 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F9B0129766FB700746C12 /* Constants.swift */; };
+		379F9B04297680AF00746C12 /* MediaTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379F9B03297680AF00746C12 /* MediaTypeCollectionViewCell.swift */; };
+		37CC833E2978111500BF95A5 /* TrendingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC833D2978111500BF95A5 /* TrendingCollectionViewCell.swift */; };
+		37CC83402978174A00BF95A5 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC833F2978174A00BF95A5 /* MovieTableViewCell.swift */; };
+		37CC83422978187B00BF95A5 /* MediaTypeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC83412978187B00BF95A5 /* MediaTypeHeaderView.swift */; };
+		37CC83442978227C00BF95A5 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC83432978227C00BF95A5 /* MovieCollectionViewCell.swift */; };
 		4708E2CDD21063792789903E /* Pods_kinokzclone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC501143D3D4E8A319D055B5 /* Pods_kinokzclone.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +38,11 @@
 		379F9AFC29766C5900746C12 /* TicketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsViewController.swift; sourceTree = "<group>"; };
 		379F9AFE29766C6300746C12 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		379F9B0129766FB700746C12 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		379F9B03297680AF00746C12 /* MediaTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		37CC833D2978111500BF95A5 /* TrendingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewCell.swift; sourceTree = "<group>"; };
+		37CC833F2978174A00BF95A5 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		37CC83412978187B00BF95A5 /* MediaTypeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypeHeaderView.swift; sourceTree = "<group>"; };
+		37CC83432978227C00BF95A5 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		679E55554F148C5968320CEF /* Pods-kinokzclone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinokzclone.release.xcconfig"; path = "Target Support Files/Pods-kinokzclone/Pods-kinokzclone.release.xcconfig"; sourceTree = "<group>"; };
 		9E90410DB6CA2EBB164F3C83 /* Pods-kinokzclone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinokzclone.debug.xcconfig"; path = "Target Support Files/Pods-kinokzclone/Pods-kinokzclone.debug.xcconfig"; sourceTree = "<group>"; };
 		EC501143D3D4E8A319D055B5 /* Pods_kinokzclone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kinokzclone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +108,11 @@
 		379F9B0029766FA500746C12 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				379F9B03297680AF00746C12 /* MediaTypeCollectionViewCell.swift */,
+				37CC833D2978111500BF95A5 /* TrendingCollectionViewCell.swift */,
+				37CC833F2978174A00BF95A5 /* MovieTableViewCell.swift */,
+				37CC83412978187B00BF95A5 /* MediaTypeHeaderView.swift */,
+				37CC83432978227C00BF95A5 /* MovieCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,7 +131,6 @@
 				9E90410DB6CA2EBB164F3C83 /* Pods-kinokzclone.debug.xcconfig */,
 				679E55554F148C5968320CEF /* Pods-kinokzclone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -235,12 +249,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				379F9AE829766AA500746C12 /* MainViewController.swift in Sources */,
+				37CC83442978227C00BF95A5 /* MovieCollectionViewCell.swift in Sources */,
 				379F9AF929766C3600746C12 /* PosterViewController.swift in Sources */,
 				379F9AFB29766C4800746C12 /* PlacesViewController.swift in Sources */,
 				379F9AE429766AA500746C12 /* AppDelegate.swift in Sources */,
 				379F9AFF29766C6300746C12 /* ProfileViewController.swift in Sources */,
 				379F9AFD29766C5900746C12 /* TicketsViewController.swift in Sources */,
+				37CC833E2978111500BF95A5 /* TrendingCollectionViewCell.swift in Sources */,
 				379F9AE629766AA500746C12 /* SceneDelegate.swift in Sources */,
+				379F9B04297680AF00746C12 /* MediaTypeCollectionViewCell.swift in Sources */,
+				37CC83402978174A00BF95A5 /* MovieTableViewCell.swift in Sources */,
+				37CC83422978187B00BF95A5 /* MediaTypeHeaderView.swift in Sources */,
 				379F9B0229766FB700746C12 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

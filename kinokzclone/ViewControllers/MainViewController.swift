@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MainViewController: UITabBarController {
+final class MainViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +21,17 @@ class MainViewController: UITabBarController {
         
         vc1.tabBarItem.image = UIImage(systemName: "film")
         vc1.tabBarItem.selectedImage = UIImage(systemName: "film.fill")
-        vc2.tabBarItem.image = UIImage(systemName: "globe.central.south.asia")
-        vc2.tabBarItem.selectedImage = UIImage(systemName: "globe.central.south.asia.fill")
+        vc2.tabBarItem.image = UIImage(systemName: "safari")
+        vc2.tabBarItem.selectedImage = UIImage(systemName: "safari.fill")
         vc3.tabBarItem.image = UIImage(systemName: "ticket")
         vc3.tabBarItem.selectedImage = UIImage(systemName: "ticket.fill")
         vc4.tabBarItem.image = UIImage(systemName: "person")
         vc4.tabBarItem.selectedImage = UIImage(systemName: "person.fill")
         
-        vc1.title = "Афиша"
-        vc2.title = "Места"
-        vc3.title = "Мои билеты"
-        vc4.title = "Профиль"
+        vc1.title = Constants.Values.tabBarItems[0]
+        vc2.title = Constants.Values.tabBarItems[1]
+        vc3.title = Constants.Values.tabBarItems[2]
+        vc4.title = Constants.Values.tabBarItems[3]
         
         tabBar.tintColor = .label
         
