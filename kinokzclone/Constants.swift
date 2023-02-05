@@ -10,7 +10,7 @@ import Foundation
 struct Constants {
     
     struct Keys {
-        
+        static let api = "b546d4933841b9453fa9ccabe482d1a8"
     }
     
     struct Identifiers {
@@ -26,6 +26,14 @@ struct Constants {
     
     struct Values {
         static let tabBarItems = ["Poster", "Theaters", "My Tickets", "Profile"]
+    }
+    
+    struct Links {
+        static let apiUrl = "https://api.themoviedb.org/3/"
+        static let trendingUrl = "\(apiUrl)trending/movie/day?api_key=\(Keys.api)"
+        static let imageUrl = "https://image.tmdb.org/t/p/w500/"
+        
+// https://api.themoviedb.org/3/trending/movie/day?api_key=b546d4933841b9453fa9ccabe482d1a8
     }
 }
 

@@ -12,6 +12,7 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     private lazy var movieImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Moana")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -24,6 +25,13 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with model: MovieModel) {
+        guard let url = URL(string: "\(Constants.Links.imageUrl)\(model.posterPath)") else { fatalError("Incorrect link!") }
+        DispatchQueue.main.async {
+            self.movieImageView.kf.setImage(with: url)
+        }
     }
 }
 

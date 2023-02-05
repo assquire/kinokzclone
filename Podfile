@@ -7,5 +7,5 @@ target 'kinokzclone' do
 
   # Pods for kinokzclone
   pod 'SnapKit'
-
+  pod 'Kingfisher'
 end

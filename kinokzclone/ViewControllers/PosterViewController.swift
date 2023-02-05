@@ -8,10 +8,12 @@
 import UIKit
 
 final class PosterViewController: UIViewController {
+    
+    var apiCaller = APICaller()
+    var movieList: [MovieModel] = []
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let bigView = UIView()
     
     private let mediaTypes = MediaType.allCases
         
@@ -68,6 +70,9 @@ final class PosterViewController: UIViewController {
         trendingCollectionView.delegate = self
         movieTableView.dataSource = self
         movieTableView.delegate = self
+        apiCaller.delegate = self
+        
+        apiCaller.fetchRequest()
         
         setupViews()
         setupConstraints()
@@ -91,6 +96,19 @@ private extension PosterViewController {
     }
 }
 
+extension PosterViewController: APICallerDelegate {
+    func didUpdateMovieList(with movieList: [MovieModel]) {
+        DispatchQueue.main.async {
+            self.movieList.append(contentsOf: movieList)
+            self.trendingCollectionView.reloadData()
+        }
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
+}
+
 //MARK: - Collection view data source methods
 
 extension PosterViewController: UICollectionViewDataSource {
@@ -100,7 +118,7 @@ extension PosterViewController: UICollectionViewDataSource {
             return mediaTypes.count - 1
         }
         else {
-            return 4
+            return movieList.count
         }
     }
     
@@ -117,6 +135,7 @@ extension PosterViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.trendingCollectionViewCell, for: indexPath) as! TrendingCollectionViewCell
             cell.layer.masksToBounds = true
             cell.layer.cornerRadius = 10
+            cell.configure(with: movieList[indexPath.item])
             return cell
         }
     }
@@ -198,11 +217,10 @@ private extension PosterViewController {
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(bigView)
-        bigView.addSubview(movieSearchBar)
-        bigView.addSubview(mediaTypeCollectionView)
-        bigView.addSubview(trendingCollectionView)
-        bigView.addSubview(movieTableView)
+        contentView.addSubview(movieSearchBar)
+        contentView.addSubview(mediaTypeCollectionView)
+        contentView.addSubview(trendingCollectionView)
+        contentView.addSubview(movieTableView)
     }
     
     func setupConstraints() {
@@ -211,30 +229,29 @@ private extension PosterViewController {
         }
         contentView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalTo(view)
-        }
-        bigView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(15)
+            make.leading.trailing.equalTo(view).inset(15)
         }
         movieSearchBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(view).multipliedBy(0.05)
+        }
+        movieSearchBar.searchTextField.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         mediaTypeCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(movieSearchBar.snp.bottom)
-            make.height.equalTo(view.frame.size.height * 0.06)
+            make.top.equalTo(movieSearchBar.snp.bottom).offset(10)
+            make.height.equalTo(view).multipliedBy(0.06)
         }
         trendingCollectionView.snp.makeConstraints { make in
             make.top.equalTo(mediaTypeCollectionView.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(view.frame.size.height * 0.175)
+            make.height.equalTo(view).multipliedBy(0.175)
         }
         movieTableView.snp.makeConstraints { make in
             make.top.equalTo(trendingCollectionView.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(view.frame.size.height)
-            make.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(view)
         }
     }
 }
