@@ -28,7 +28,7 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with model: MovieModel) {
-        guard let url = URL(string: "\(Constants.Links.imageUrl)\(model.posterPath)") else { fatalError("Incorrect link!") }
+        guard let url = URL(string: "\(Constants.Links.imageLink)\(model.posterPath)") else { fatalError("Incorrect link!") }
         DispatchQueue.main.async {
             self.movieImageView.kf.setImage(with: url)
         }

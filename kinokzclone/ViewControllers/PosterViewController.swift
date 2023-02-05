@@ -11,11 +11,12 @@ final class PosterViewController: UIViewController {
     
     var apiCaller = APICaller()
     var movieList: [MovieModel] = []
+    var allMoviesList: [[MovieModel]] = []
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
-    private let mediaTypes = MediaType.allCases
+    private let mediaTypes = MovieType.allCases
         
     private lazy var movieSearchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -71,9 +72,8 @@ final class PosterViewController: UIViewController {
         movieTableView.dataSource = self
         movieTableView.delegate = self
         apiCaller.delegate = self
-        
-        apiCaller.fetchRequest()
-        
+        apiCaller.testFetchRequest()
+                        
         setupViews()
         setupConstraints()
     }
@@ -97,11 +97,18 @@ private extension PosterViewController {
 }
 
 extension PosterViewController: APICallerDelegate {
-    func didUpdateMovieList(with movieList: [MovieModel]) {
+    func didUpdateAllMovieList(_ apiCaller: APICaller, with movieList: [MovieModel]) {
+        self.allMoviesList.append(movieList)
         DispatchQueue.main.async {
-            self.movieList.append(contentsOf: movieList)
-            self.trendingCollectionView.reloadData()
+            self.movieTableView.reloadData()
         }
+    }
+    
+    func didUpdateMovieList(with movieList: [MovieModel]) {
+//        DispatchQueue.main.async {
+//            self.movieList.append(contentsOf: movieList)
+//            self.trendingCollectionView.reloadData()
+//        }
     }
     
     func didFailWithError(_ error: Error) {
@@ -115,7 +122,7 @@ extension PosterViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == mediaTypeCollectionView {
-            return mediaTypes.count - 1
+            return mediaTypes.count
         }
         else {
             return movieList.count
@@ -128,7 +135,7 @@ extension PosterViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = true
             cell.layer.cornerRadius = 5
             cell.backgroundColor = .systemGray4
-            cell.setText(with: mediaTypes[indexPath.item + 1].rawValue)
+            cell.setText(with: mediaTypes[indexPath.item].rawValue)
             return cell
         }
         else {
@@ -157,7 +164,7 @@ extension PosterViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == mediaTypeCollectionView {
             let label = UILabel()
-            label.text = mediaTypes[indexPath.item + 1].rawValue
+            label.text = mediaTypes[indexPath.item].rawValue
             label.sizeToFit()
             return CGSize(width: label.frame.width + 20, height: collectionView.frame.size.height - 15)
         }
@@ -174,7 +181,7 @@ extension PosterViewController: UICollectionViewDelegateFlowLayout {
 extension PosterViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return mediaTypes.count - 2
+        return allMoviesList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -183,13 +190,14 @@ extension PosterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = MediaTypeHeaderView()
-        view.setHeaderView(mediaType: mediaTypes[section + 2].rawValue, number: 25)
+        view.setHeaderView(mediaType: mediaTypes[section].rawValue, number: 25)
         return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.movieTableViewCell, for: indexPath) as! MovieTableViewCell
         cell.backgroundColor = .clear
+        cell.configure(with: allMoviesList[indexPath.section])
         return cell
     }
 }
@@ -200,7 +208,7 @@ extension PosterViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let label = UILabel()
-        label.text = mediaTypes[section + 2].rawValue
+        label.text = mediaTypes[section].rawValue
         label.sizeToFit()
         return label.frame.height + 20
     }
@@ -251,7 +259,7 @@ private extension PosterViewController {
         movieTableView.snp.makeConstraints { make in
             make.top.equalTo(trendingCollectionView.snp.bottom).offset(10)
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(view)
+            make.height.equalTo(view).multipliedBy(1.3)
         }
     }
 }

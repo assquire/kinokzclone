@@ -7,33 +7,57 @@
 
 import Foundation
 
-protocol APICallerDelegate {
+protocol APICallerDelegate: AnyObject {
+    func didUpdateAllMovieList(_ apiCaller: APICaller, with movieList: [MovieModel])
     func didUpdateMovieList(with movieList: [MovieModel])
     func didFailWithError(_ error: Error)
 }
 
 struct APICaller {
     
-    var delegate: APICallerDelegate?
+    weak var delegate: APICallerDelegate?
     
     func fetchRequest() {
-        let urlString = Constants.Links.trendingUrl
-        guard let url = URL(string: urlString) else { fatalError("Incorrect link!") }
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            if let data, error == nil {
-                if let movieList = parseJSON(data) {
-                    delegate?.didUpdateMovieList(with: movieList)
+//        let urlString = Constants.URLs.trending
+//        guard let url = URL(string: urlString) else { fatalError("Incorrect link!") }
+//        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+//            if let data, error == nil {
+//                if let movieList = parseMovieJSON(data) {
+//                    delegate?.didUpdateMovieList(with: movieList)
+//                } else {
+//                    delegate?.didFailWithError(error!)
+//                }
+//            } else {
+//                delegate?.didFailWithError(error!)
+//            }
+//        }
+//        task.resume()
+    }
+    
+    func testFetchRequest() {
+        for urlString in Constants.Values.urlList {
+            guard let url = URL(string: urlString) else { fatalError("Incorrect link!") }
+            let task = URLSession.shared.dataTask(with: url) { data, _, error in
+                if let data, error == nil {
+                    if let movieList = parseMovieJSON(data) {
+                        delegate?.didUpdateAllMovieList(self, with: movieList)
+                    } else {
+                        delegate?.didFailWithError(error!)
+                    }
                 } else {
                     delegate?.didFailWithError(error!)
                 }
-            } else {
-                delegate?.didFailWithError(error!)
             }
+            task.resume()
         }
-        task.resume()
     }
     
-    func parseJSON(_ data: Data) -> [MovieModel]? {
+    func parseGenreJSON(_ data: Data) -> [Int:String] {
+        let genreList: [Int:String] = [:]
+        return genreList
+    }
+    
+    func parseMovieJSON(_ data: Data) -> [MovieModel]? {
         var movieList: [MovieModel] = []
         do {
             let decodedData = try JSONDecoder().decode(MovieData.self, from: data)

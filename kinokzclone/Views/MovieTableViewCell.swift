@@ -9,6 +9,8 @@ import UIKit
 
 final class MovieTableViewCell: UITableViewCell {
     
+    private var movieList: [MovieModel] = []
+    
     private lazy var movieCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -32,6 +34,13 @@ final class MovieTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(with movieList: [MovieModel]) {
+        self.movieList = movieList
+        DispatchQueue.main.async {
+            self.movieCollectionView.reloadData()
+        }
+    }
 }
 
 //MARK: - Collection view data source methods
@@ -46,6 +55,7 @@ extension MovieTableViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.movieCollectionViewCell, for: indexPath) as! MovieCollectionViewCell
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 5
+        cell.configure(with: movieList[indexPath.item])
         return cell
     }
 }

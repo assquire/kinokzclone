@@ -26,21 +26,29 @@ struct Constants {
     
     struct Values {
         static let tabBarItems = ["Poster", "Theaters", "My Tickets", "Profile"]
+        static let urlList = [URLs.trending, URLs.nowPlaying, URLs.popular, URLs.topRated, URLs.upcoming]
     }
     
     struct Links {
-        static let apiUrl = "https://api.themoviedb.org/3/"
-        static let trendingUrl = "\(apiUrl)trending/movie/day?api_key=\(Keys.api)"
-        static let imageUrl = "https://image.tmdb.org/t/p/w500/"
-        
-// https://api.themoviedb.org/3/trending/movie/day?api_key=b546d4933841b9453fa9ccabe482d1a8
+        static let apiLink = "https://api.themoviedb.org/3/"
+        static let imageLink = "https://image.tmdb.org/t/p/w500/"
     }
+    
+    struct URLs  {
+        static let trending = "\(Links.apiLink)trending/movie/day?api_key=\(Keys.api)"
+        static let nowPlaying = "\(Links.apiLink)movie/now_playing?api_key=\(Keys.api)"
+        static let popular = "\(Links.apiLink)movie/popular?api_key=\(Keys.api)"
+        static let topRated = "\(Links.apiLink)movie/top_rated?api_key=\(Keys.api)"
+        static let upcoming = "\(Links.apiLink)movie/upcoming?api_key=\(Keys.api)"
+    }
+    
+    // https://api.themoviedb.org/3/movie/popular?api_key=b546d4933841b9453fa9ccabe482d1a8&language=en-US&page=1
 }
 
-enum MediaType: String, CaseIterable {
-    case trending = "Trending"
+enum MovieType: String, CaseIterable {
     case all = "All"
-    case streaming = "Streaming"
-    case onTV = "On TV"
-    case inTheaters = "In Theaters"
+    case nowPlaying = "Now Playing"
+    case popular = "Popular"
+    case topRated = "Top Rated"
+    case upcoming = "Upcoming"
 }

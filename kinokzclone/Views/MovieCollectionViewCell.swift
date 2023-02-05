@@ -45,6 +45,16 @@ class MovieCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configure(with model: MovieModel) {
+        guard let url = URL(string: "\(Constants.Links.imageLink)\(model.posterPath)") else { fatalError("Incorrect image url!") }
+        let stringArray = model.genreIds.map { String($0) }
+        DispatchQueue.main.async {
+            self.posterImageView.kf.setImage(with: url)
+            self.movieNameLabel.text = model.title
+            self.movieDescLabel.text = stringArray.joined(separator: ", ")
+        }
+    }
 }
 
 //MARK: - Setup views and constraints

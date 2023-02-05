@@ -25,6 +25,7 @@
 		37CC83402978174A00BF95A5 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC833F2978174A00BF95A5 /* MovieTableViewCell.swift */; };
 		37CC83422978187B00BF95A5 /* MediaTypeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC83412978187B00BF95A5 /* MediaTypeHeaderView.swift */; };
 		37CC83442978227C00BF95A5 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CC83432978227C00BF95A5 /* MovieCollectionViewCell.swift */; };
+		37DF1EFF298FE3BA00F5E5DF /* GenreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DF1EFE298FE3BA00F5E5DF /* GenreData.swift */; };
 		4708E2CDD21063792789903E /* Pods_kinokzclone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC501143D3D4E8A319D055B5 /* Pods_kinokzclone.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		37CC833F2978174A00BF95A5 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		37CC83412978187B00BF95A5 /* MediaTypeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypeHeaderView.swift; sourceTree = "<group>"; };
 		37CC83432978227C00BF95A5 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		37DF1EFE298FE3BA00F5E5DF /* GenreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreData.swift; sourceTree = "<group>"; };
 		679E55554F148C5968320CEF /* Pods-kinokzclone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinokzclone.release.xcconfig"; path = "Target Support Files/Pods-kinokzclone/Pods-kinokzclone.release.xcconfig"; sourceTree = "<group>"; };
 		9E90410DB6CA2EBB164F3C83 /* Pods-kinokzclone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kinokzclone.debug.xcconfig"; path = "Target Support Files/Pods-kinokzclone/Pods-kinokzclone.debug.xcconfig"; sourceTree = "<group>"; };
 		EC501143D3D4E8A319D055B5 /* Pods_kinokzclone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kinokzclone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 				37C351D029795D8C005EC856 /* APICaller.swift */,
 				37A09A0D2987F22E00060358 /* MovieData.swift */,
 				374B792C2988DEFD002BCA7B /* MovieModel.swift */,
+				37DF1EFE298FE3BA00F5E5DF /* GenreData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				37CC833E2978111500BF95A5 /* TrendingCollectionViewCell.swift in Sources */,
 				379F9AE629766AA500746C12 /* SceneDelegate.swift in Sources */,
 				379F9B04297680AF00746C12 /* MediaTypeCollectionViewCell.swift in Sources */,
+				37DF1EFF298FE3BA00F5E5DF /* GenreData.swift in Sources */,
 				374B792D2988DEFD002BCA7B /* MovieModel.swift in Sources */,
 				37CC83402978174A00BF95A5 /* MovieTableViewCell.swift in Sources */,
 				37CC83422978187B00BF95A5 /* MediaTypeHeaderView.swift in Sources */,
